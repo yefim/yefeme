@@ -9,7 +9,9 @@ $spacing: 30px;
 
 $white: #fff !default;
 $gray: #47525d !default;
+$dark-gray: #929faa !default;
 $light-gray: #dbe4eb !default;
+$lighter-gray: #f2f9ff !default;
 $blue: #2d95f3;
 
 html {
@@ -106,4 +108,32 @@ footer {
   border-top: 1px solid $light-gray;
   margin: 20px 0 0;
   padding: 20px 0;
+}
+
+.post-list {
+  li {
+    margin: 0 0 12px;
+  }
+
+  li:last-child {
+    margin: 0;
+  }
+}
+
+.post-header {
+  margin: 0 0 20px;
+
+  .post-meta {
+    margin: 0;
+  }
+}
+
+.post-content {
+  p {
+    margin: 0 0 12px;
+  }
+
+  p:last-child {
+    margin: 0;
+  }
 }

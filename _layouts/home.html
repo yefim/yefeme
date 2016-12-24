@@ -2,12 +2,12 @@
 layout: default
 ---
 
-<h1>Posts</h1>
-<ul>
+<h1>Musings</h1>
+<ul class="post-list">
   {% for post in site.posts %}
     <li>
       <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-      <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+      <span>{{ post.date | date: "%B %-d, %Y" }}</span>
     </li>
   {% endfor %}
 </ul>
