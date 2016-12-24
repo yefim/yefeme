@@ -1,3 +1,12 @@
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-size: 16px !default;
+$base-font-weight: 400 !default;
+$small-font-size: $base-font-size * 0.875 !default;
+$base-line-height: 1.5 !default;
+
+$text-color: #111 !default;
+$background-color: #fff !default;
+
 html {
   box-sizing: border-box;
 }
@@ -14,6 +23,18 @@ html {
   padding: 0;
 }
 
+body {
+  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+  color: $text-color;
+  background-color: $background-color;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-feature-settings: "kern" 1;
+     -moz-font-feature-settings: "kern" 1;
+       -o-font-feature-settings: "kern" 1;
+          font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
 h1 {
   margin: 0;
 }
@@ -26,4 +47,9 @@ ul {
 
 h2 {
   margin: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1100px;
 }
