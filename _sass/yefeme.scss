@@ -1,7 +1,7 @@
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 $base-font-size: 16px !default;
 $base-font-weight: 400 !default;
-$small-font-size: $base-font-size * 0.875 !default;
+$small-font-size: $base-font-size * .875 !default;
 $base-line-height: 1.5 !default;
 
 $width: 1100px;
@@ -24,6 +24,7 @@ html {
 
 body,
 html {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
@@ -32,15 +33,13 @@ body {
   background-color: $white;
   color: $gray;
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-feature-settings: "kern" 1;
-  -moz-font-feature-settings: "kern" 1;
-  -o-font-feature-settings: "kern" 1;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
 }
 
 h1 {
+  font-size: 28px;
+  line-height: 36px;
   margin: 0;
 }
 
@@ -51,6 +50,8 @@ ul {
 }
 
 h2 {
+  font-size: 22px;
+  line-height: 30px;
   margin: 0;
 }
 
@@ -67,21 +68,42 @@ a:hover {
   border-bottom: 1px solid $blue;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
 .content {
   margin: 0 auto;
   max-width: $width;
   padding: 0 $spacing;
 }
 
+main {
+  flex-grow: 1;
+}
+
 header {
-  border-top: 2px solid $light-gray;
   border-bottom: 1px solid $light-gray;
+  border-top: 5px solid $light-gray;
+  margin: 0 0 20px;
   padding: 20px 0;
-  margin: 0 0 20px 0;
+
+  a,
+  a:hover,
+  a:focus,
+  a:visited {
+    color: $gray;
+  }
+
+  a:hover {
+    border-bottom: 1px solid $gray;
+  }
 }
 
 footer {
   border-top: 1px solid $light-gray;
-  margin: 20px 0 0 0;
+  margin: 20px 0 0;
   padding: 20px 0;
 }
