@@ -1,4 +1,4 @@
-$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$base-font-family: 'Frank Ruhl Libre', sans-serif !default;
 $base-font-size: 20px !default;
 $base-font-weight: 400 !default;
 $small-font-size: $base-font-size * .875 !default;
@@ -7,12 +7,11 @@ $base-line-height: 1.5 !default;
 $width: 760px;
 $spacing: 30px;
 
-$white: #fff !default;
-$gray: #47525d !default;
-$dark-gray: #929faa !default;
-$light-gray: #dbe4eb !default;
-$lighter-gray: #f2f9ff !default;
-$blue: #2d95f3;
+$white: #FCFCFC !default;
+$primary: #242325 !default;
+$secondary: #84828F !default;
+$accent: #ED254E !default;
+$light-gray: #E8E8EA !default;
 
 html {
   box-sizing: border-box;
@@ -33,10 +32,15 @@ html {
 
 body {
   background-color: $white;
-  color: $gray;
+  color: $primary;
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   font-feature-settings: "kern" 1;
   font-kerning: normal;
+}
+
+h1, h2, h3, h4, h5, a {
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 400;
 }
 
 h1 {
@@ -51,10 +55,24 @@ ul {
   padding: 0;
 }
 
-h2 {
+.content h2 {
+  margin: 0;
+}
+
+.post-list li {
+  h2 {
   font-size: 22px;
   line-height: 30px;
   margin: 0;
+  display: inline-block;
+  font-weight: 400;
+}
+  span {
+    float: right;
+    font-size: .75em;
+    color: #84828F;
+    text-align: right;
+  }
 }
 
 a,
@@ -62,12 +80,13 @@ a:hover,
 a:active,
 a:focus,
 a:visited {
-  color: $blue;
+  color: $accent;
   text-decoration: none;
 }
 
 a:hover {
-  border-bottom: 1px solid $blue;
+  border-bottom: 1px solid $accent;
+  padding-bottom: 5px;
 }
 
 .wrapper {
@@ -87,27 +106,43 @@ main {
 }
 
 header {
-  border-bottom: 1px solid $light-gray;
-  border-top: 5px solid $light-gray;
-  margin: 0 0 20px;
+  margin: 0px 0 20px;
   padding: 20px 0;
 
   a,
   a:hover,
   a:focus,
   a:visited {
-    color: $gray;
+    color: $primary;
   }
 
   a:hover {
-    border-bottom: 1px solid $gray;
+    border-bottom: none;
+    font-weight: 600;
   }
 }
 
 footer {
-  border-top: 1px solid $light-gray;
-  margin: 20px 0 0;
-  padding: 20px 0;
+  .content {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #E8E8EA;
+    padding: 20px 30px;
+  }
+  .copyright {
+    span {
+      font-size: .75em;
+      color: #84828F;
+    }
+  }
+  .links {
+    a {
+      margin-right: 10px;
+      &:hover {
+        border-bottom: none;
+      }
+    }
+  }
 }
 
 .post-list {
@@ -125,12 +160,23 @@ footer {
 
   .post-meta {
     margin: 0;
+    color: $secondary;
+  }
+
+  .post-title {
+    color: $accent;
   }
 }
 
 .post-content {
+  h2 {
+    font-size: 26px;
+    margin-top: 40px;
+  }
+
   p {
     margin: 0 0 12px;
+    font-size: 16px;
   }
 
   p:last-child {
