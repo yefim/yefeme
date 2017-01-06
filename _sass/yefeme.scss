@@ -7,11 +7,11 @@ $base-line-height: 1.5 !default;
 $width: 760px;
 $spacing: 30px;
 
-$white: #FCFCFC !default;
+$white: #fcfcfc !default;
 $primary: #242325 !default;
-$secondary: #84828F !default;
-$accent: #ED254E !default;
-$light-gray: #E8E8EA !default;
+$secondary: #84828f !default;
+$accent: #ed254e !default;
+$light-gray: #e8e8ea !default;
 
 html {
   box-sizing: border-box;
@@ -38,7 +38,12 @@ body {
   font-kerning: normal;
 }
 
-h1, h2, h3, h4, h5, a {
+h1,
+h2,
+h3,
+h4,
+h5,
+a {
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
 }
@@ -53,26 +58,6 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.content h2 {
-  margin: 0;
-}
-
-.post-list li {
-  h2 {
-  font-size: 22px;
-  line-height: 30px;
-  margin: 0;
-  display: inline-block;
-  font-weight: 400;
-}
-  span {
-    float: right;
-    font-size: .75em;
-    color: #84828F;
-    text-align: right;
-  }
 }
 
 a,
@@ -99,6 +84,10 @@ a:hover {
   margin: 0 auto;
   max-width: $width;
   padding: 0 $spacing;
+
+  h2 {
+    margin: 0;
+  }
 }
 
 main {
@@ -106,7 +95,7 @@ main {
 }
 
 header {
-  margin: 0px 0 20px;
+  margin: 0 0 20px;
   padding: 20px 0;
 
   a,
@@ -117,29 +106,36 @@ header {
   }
 
   a:hover {
-    border-bottom: none;
+    border-bottom: 0;
   }
 }
 
 footer {
   .content {
+    border-top: 1px solid $light-gray;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #E8E8EA;
     padding: 20px 30px;
   }
+
   .copyright {
     span {
+      color: $secondary;
       font-size: .75em;
-      color: #84828F;
     }
   }
+
   .links {
     a {
-      margin-right: 10px;
-      &:hover {
-        border-bottom: none;
-      }
+      margin: 0 10px 0 0;
+    }
+
+    a:last-child {
+      margin: 0;
+    }
+
+    a:hover {
+      border-bottom: 0;
     }
   }
 }
@@ -147,6 +143,21 @@ footer {
 .post-list {
   li {
     margin: 0 0 12px;
+
+    h2 {
+      display: inline-block;
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 30px;
+      margin: 0;
+    }
+
+    span {
+      color: $secondary;
+      float: right;
+      font-size: .75em;
+      text-align: right;
+    }
   }
 
   li:last-child {
@@ -158,8 +169,8 @@ footer {
   margin: 0 0 20px;
 
   .post-meta {
-    margin: 0;
     color: $secondary;
+    margin: 0;
   }
 
   .post-title {
@@ -174,11 +185,11 @@ footer {
   }
 
   p {
-    margin: 0 0 12px;
     font-size: 16px;
+    margin: 0 0 12px;
   }
 
   p:last-child {
-    margin: 0;
+    margin: 0 0 24px;
   }
 }
