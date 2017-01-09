@@ -1,7 +1,7 @@
 $base-font-family: 'Frank Ruhl Libre', serif !default;
 $base-font-size: 20px !default;
 $base-font-weight: 400 !default;
-$small-font-size: $base-font-size * .875 !default;
+$small-font-size: $base-font-size * .8 !default;
 $base-line-height: 1.5 !default;
 
 $width: 760px;
@@ -182,5 +182,15 @@ footer {
 
   p:last-child {
     margin: 0 0 24px;
+  }
+}
+
+.highlight {
+  margin: 0;
+
+  pre {
+    font-size: $small-font-size;
+    margin: 0;
+    overflow: scroll;
   }
 }
