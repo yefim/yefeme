@@ -42,8 +42,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
-a {
+h5 {
   font-family: 'Varela Round', sans-serif;
   font-weight: 400;
 }
@@ -67,11 +66,6 @@ a:focus,
 a:visited {
   color: $accent;
   text-decoration: none;
-}
-
-a:hover {
-  border-bottom: 1px solid $accent;
-  padding-bottom: 5px;
 }
 
 .wrapper {
@@ -104,10 +98,6 @@ header {
   a:visited {
     color: $primary;
   }
-
-  a:hover {
-    border-bottom: 0;
-  }
 }
 
 footer {
@@ -133,16 +123,17 @@ footer {
     a:last-child {
       margin: 0;
     }
-
-    a:hover {
-      border-bottom: 0;
-    }
   }
 }
 
 .post-list {
   li {
     margin: 0 0 12px;
+
+    a:hover {
+      border-bottom: 1px solid $accent;
+      padding-bottom: 5px;
+    }
 
     h2 {
       display: inline-block;
