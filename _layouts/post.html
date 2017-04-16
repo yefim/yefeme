@@ -9,10 +9,11 @@ layout: default
     </svg>
     <div class="under under-small">
       <h2 itemprop="name headline"><em>{{ page.title | escape }}</em></h2>
-      <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+      <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
       <a class="back accent" href="{{ "/" | relative }}">~ back to blog</a>
     </div>
   </div>
+  <hr />
 </header>
 <main>
   <article itemprop="articleBody">

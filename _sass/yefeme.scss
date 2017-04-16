@@ -79,7 +79,12 @@ main {
 
   @media only screen and (max-width: 1080px) {
     margin: 0 auto;
-    padding: 76px 0 0;
+    padding: 40px 0 0;
+  }
+
+  @media only screen and (max-width: 700px) {
+    padding: 40px 16px 0;
+    width: 100%;
   }
 }
 
@@ -90,7 +95,13 @@ main {
   line-height: 2.4;
   margin: 4px 0 0;
   text-align: right;
-  width: 105px;
+  width: 72px;
+
+  @media only screen and (max-width: 700px) {
+    order: 2;
+    text-align: left;
+    width: auto;
+  }
 }
 
 .date {
@@ -98,16 +109,31 @@ main {
   font-weight: 400;
   line-height: 2.4;
   margin: 0;
+
+  @media only screen and (max-width: 700px) {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+  }
 }
 
 .post {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   margin: 0 0 44px;
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+  }
 }
 
 .post-details {
   width: 488px;
+
+  @media only screen and (max-width: 700px) {
+    width: 100%;
+  }
 }
 
 .excerpt {
@@ -126,29 +152,44 @@ header {
     align-items: stretch;
     display: block;
     height: auto;
-    padding: 56px 0 0;
     position: static;
   }
 }
 
-.large {
-  height: 136px;
-  width: 103px;
-}
-
-.small {
-  height: 61px;
-  width: 46px;
-}
-
 .logo {
+  height: auto;
   position: relative;
 
   @media only screen and (max-width: 1080px) {
     align-items: center;
     display: flex;
-    margin: 0 auto;
+    margin: 56px auto 40px;
     width: 616px;
+  }
+
+  @media only screen and (max-width: 700px) {
+    margin: 0 0 27px;
+    padding: 72px 16px 0;
+    width: 100%;
+  }
+}
+
+hr {
+  border: 0;
+  display: none;
+  height: 0;
+  margin: 0;
+
+  @media only screen and (max-width: 1080px) {
+    background-color: $accent;
+    display: block;
+    height: 1px;
+    margin: 0 auto;
+    width: 360px;
+  }
+
+  @media only screen and (max-width: 700px) {
+    width: 100px;
   }
 }
 
@@ -235,6 +276,12 @@ article {
     right: 0;
     top: 0;
   }
+
+  @media only screen and (max-width: 700px) {
+    left: 16px;
+    right: auto;
+    top: 16px;
+  }
 }
 
 .highlight {
@@ -251,4 +298,8 @@ article {
     font-family: "Inconsolata", monospace;
     font-size: 14px;
   }
+}
+
+svg {
+  flex-shrink: 0;
 }
