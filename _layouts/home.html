@@ -19,7 +19,7 @@ layout: default
   <ul>
     {% for post in site.posts %}
       <li class="post">
-        <span class="accent date">{{ post.date | date: "%B %-d, %Y" }}</span>
+        <span class="accent fixed-date">{{ post.date | date: "%B %-d, %Y" }}</span>
         <div class="post-details">
           <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
           <p class="excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
