@@ -75,6 +75,11 @@ main {
   margin: 0 0 0 auto;
   padding: 136px 0 0;
   width: 616px;
+
+  @media only screen and (max-width: 1080px) {
+    margin: 0 auto;
+    padding: 76px 0 0;
+  }
 }
 
 .date {
@@ -105,24 +110,63 @@ header {
   display: flex;
   height: 100vh;
   position: fixed;
+
+  @media only screen and (max-width: 1080px) {
+    align-items: stretch;
+    display: block;
+    height: auto;
+    padding: 56px 0 0;
+    position: static;
+  }
 }
 
-.logo {
+.large {
   height: 136px;
-  position: relative;
   width: 103px;
 }
 
-.small-logo {
-  height: 46px;
+.small {
+  height: 61px;
+  width: 46px;
+}
+
+.logo {
   position: relative;
-  width: 61px;
+
+  @media only screen and (max-width: 1080px) {
+    align-items: center;
+    display: flex;
+    margin: 0 auto;
+    width: 616px;
+  }
 }
 
 .under {
   left: 0;
   position: absolute;
   width: 232px;
+
+  @media only screen and (max-width: 1080px) {
+    position: static;
+    width: auto;
+  }
+}
+
+.under-large {
+  top: 184px;
+
+  @media only screen and (max-width: 1080px) {
+    margin: 0 0 0 5px;
+  }
+}
+
+.under-small {
+  top: 83px;
+
+  @media only screen and (max-width: 1080px) {
+    margin: 0 0 0 22px;
+    width: 100%;
+  }
 }
 
 article {
@@ -156,6 +200,10 @@ article {
     font-size: 16px;
     margin: 0 16px 0 0;
   }
+
+  @media only screen and (max-width: 1080px) {
+    margin: 10px 0 0;
+  }
 }
 
 .back {
@@ -164,6 +212,13 @@ article {
   font-weight: 600;
   line-height: 2;
   margin: 24px 0 0;
+
+  @media only screen and (max-width: 1080px) {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 .highlight {
