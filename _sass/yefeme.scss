@@ -74,16 +74,16 @@ a {
 
 main {
   margin: 0 0 0 auto;
-  padding: 132px 0 0;
+  padding: 132px 0;
   width: 616px;
 
   @media only screen and (max-width: 1080px) {
     margin: 0 auto;
-    padding: 40px 0 0;
+    padding: 40px 0;
   }
 
   @media only screen and (max-width: 700px) {
-    padding: 32px 16px 0;
+    padding: 32px 16px;
     width: 100%;
   }
 }
