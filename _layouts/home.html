@@ -18,12 +18,14 @@ layout: default
 <main>
   <ul>
     {% for post in site.posts %}
-      <li class="post">
-        <span class="accent fixed-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <div class="post-details">
-          <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-          <p class="excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
-        </div>
+      <li>
+        <a class="post" href="{{ post.url | relative_url }}">
+          <span class="accent fixed-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+          <div class="post-details">
+            <h2>{{ post.title | escape }}</h2>
+            <p class="excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
+          </div>
+        </a>
       </li>
     {% endfor %}
   </ul>
