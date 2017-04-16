@@ -49,6 +49,7 @@ h2 {
 
 h1 {
   font-size: 24px;
+  letter-spacing: .5px;
   line-height: 1.73;
 }
 
@@ -193,12 +194,17 @@ article {
 }
 
 .social {
+  align-items: center;
+  display: flex;
   margin: 16px 0 0;
 
   a {
-    display: inline-block;
     font-size: 16px;
     margin: 0 16px 0 0;
+
+    &.make-mail-smaller {
+      font-size: 14px;
+    }
   }
 
   @media only screen and (max-width: 1080px) {
