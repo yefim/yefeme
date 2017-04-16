@@ -83,7 +83,7 @@ main {
   }
 
   @media only screen and (max-width: 700px) {
-    padding: 40px 16px 0;
+    padding: 32px 16px 0;
     width: 100%;
   }
 }
@@ -98,6 +98,7 @@ main {
   width: 72px;
 
   @media only screen and (max-width: 700px) {
+    margin: 7px 0 0;
     order: 2;
     text-align: left;
     width: auto;
@@ -168,9 +169,15 @@ header {
   }
 
   @media only screen and (max-width: 700px) {
-    margin: 0 0 27px;
+    margin: 0 0 24px;
     padding: 72px 16px 0;
     width: 100%;
+  }
+
+  &.logo-closer-to-top-on-mobile {
+    @media only screen and (max-width: 700px) {
+      padding: 56px 16px 0;
+    }
   }
 }
 
@@ -185,11 +192,11 @@ hr {
     display: block;
     height: 1px;
     margin: 0 auto;
-    width: 360px;
+    width: 480px;
   }
 
   @media only screen and (max-width: 700px) {
-    width: 100px;
+    width: calc(100% - 168px);
   }
 }
 
@@ -210,6 +217,10 @@ hr {
   @media only screen and (max-width: 1080px) {
     margin: 0 0 0 5px;
   }
+
+  @media only screen and (max-width: 700px) {
+    margin: 0 0 0 22px;
+  }
 }
 
 .under-small {
@@ -217,7 +228,7 @@ hr {
 
   @media only screen and (max-width: 1080px) {
     margin: 0 0 0 22px;
-    width: 100%;
+    padding: 0 68px 0 0;
   }
 }
 
