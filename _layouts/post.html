@@ -2,12 +2,20 @@
 layout: default
 ---
 
-<article>
-  <div class="post-header">
-    <h1 class="post-title" itemprop="name headline">{{ page.title | escape }}</h1>
-    <p class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+<header>
+  <div class="small-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" width="46" height="61" viewBox="0 0 103 136">
+      <path fill="#F22939" fill-rule="evenodd" d="M0 0v6.663h2.352c5.29 0 8.034 3.331 9.406 6.27L49.97 94.26c-3.135 8.623-9.798 29.003-16.657 29.003-3.331 0-3.331-3.723-3.527-5.879-.392-6.859-5.095-11.17-12.542-11.17-8.035 0-12.934 6.075-12.934 13.326C4.311 126.594 9.798 136 23.32 136c14.697 0 22.536-9.994 32.138-34.686L83.09 30.571C92.3 7.055 93.476 6.663 98.963 6.663h3.527V0H67.608v6.663h3.92c2.351 0 6.858.588 6.858 6.27 0 7.447-5.879 24.3-7.838 29.591l-9.015 24.3-23.516-53.89c-1.371-3.332-.196-6.271 3.332-6.271h5.29V0H0z"/>
+    </svg>
+    <div class="under" style="top: 83px;">
+      <h2 itemprop="name headline"><em>{{ page.title | escape }}</em></h2>
+      <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%B %-d, %Y" }}</time></p>
+      <a class="back accent" href="{{ "/" | relative }}">~ back to blog</a>
+    </div>
   </div>
-  <div class="post-content" itemprop="articleBody">
+</header>
+<main>
+  <article itemprop="articleBody">
     {{ content }}
-  </div>
-</article>
+  </article>
+</main>

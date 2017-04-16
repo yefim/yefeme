@@ -1,17 +1,6 @@
-$base-font-family: 'Frank Ruhl Libre', serif !default;
-$base-font-size: 20px !default;
-$base-font-weight: 400 !default;
-$small-font-size: $base-font-size * .8 !default;
-$base-line-height: 1.5 !default;
-
-$width: 760px;
-$spacing: 30px;
-
-$white: #fcfcfc !default;
-$primary: #242325 !default;
-$secondary: #84828f !default;
-$accent: #ed254e !default;
-$light-gray: #e8e8ea !default;
+$accent: #f22939;
+$header-text: #242525;
+$text: #363838;
 
 html {
   box-sizing: border-box;
@@ -31,26 +20,8 @@ html {
 }
 
 body {
-  background-color: $white;
-  color: $primary;
-  font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  font-feature-settings: "kern" 1;
-  font-kerning: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-  font-family: 'Varela Round', sans-serif;
-  font-weight: 400;
-}
-
-h1 {
-  font-size: 28px;
-  line-height: 36px;
-  margin: 0;
+  color: $text;
+  font-family: "Libre Baskerville", serif;
 }
 
 ul {
@@ -59,144 +30,154 @@ ul {
   padding: 0;
 }
 
-a,
-a:hover,
-a:active,
-a:focus,
-a:visited {
-  color: $accent;
-  text-decoration: none;
+li {
+  margin: 0;
+  padding: 0;
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
+  margin: 0 auto;
+  max-width: 1000px;
   min-height: 100%;
 }
 
-.content {
-  margin: 0 auto;
-  max-width: $width;
-  padding: 0 $spacing;
+h1,
+h2 {
+  color: $header-text;
+  margin: 0;
+}
 
-  h2 {
-    font-size: 30px;
-    margin: 0;
-  }
+h1 {
+  font-size: 24px;
+  line-height: 1.73;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.73;
+}
+
+em {
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.accent {
+  color: $accent;
 }
 
 main {
-  flex-grow: 1;
+  margin: 0 0 0 auto;
+  padding: 136px 0 0;
+  width: 616px;
+}
+
+.date {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 2.4;
+  margin: 4px 0 0;
+}
+
+.post {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 44px;
+}
+
+.post-details {
+  width: 488px;
+}
+
+.excerpt {
+  font-size: 14px;
+  line-height: 1.73;
+  margin: 0;
 }
 
 header {
-  margin: 0 0 20px;
-  padding: 20px 0;
-
-  a,
-  a:hover,
-  a:focus,
-  a:visited {
-    color: $primary;
-  }
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  position: fixed;
 }
 
-footer {
-  .content {
-    border-top: 1px solid $light-gray;
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 30px;
-  }
-
-  .copyright {
-    span {
-      color: $secondary;
-      font-size: .75em;
-    }
-  }
-
-  .links {
-    a {
-      margin: 0 10px 0 0;
-    }
-
-    a:last-child {
-      margin: 0;
-    }
-  }
+.logo {
+  height: 136px;
+  position: relative;
+  width: 103px;
 }
 
-.post-list {
-  li {
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 0 0 12px;
-
-    @media screen and (max-width: 767px) {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    a:hover {
-      border-bottom: 1px solid $accent;
-      padding-bottom: 5px;
-    }
-
-    h2 {
-      font-size: 22px;
-      font-weight: 400;
-      line-height: 30px;
-      margin: 0;
-    }
-
-    span {
-      color: $secondary;
-      font-size: .75em;
-    }
-  }
+.small-logo {
+  height: 46px;
+  position: relative;
+  width: 61px;
 }
 
-.post-header {
-  margin: 0 0 20px;
+.under {
+  left: 0;
+  position: absolute;
+  width: 232px;
+}
 
-  .post-meta {
-    color: $secondary;
+article {
+  font-size: 16px;
+  line-height: 1.73;
+  text-align: justify;
+
+  h2 {
+    color: $accent;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
     margin: 0;
+    padding: 28px 0;
   }
 
-  .post-title {
+  p {
+    margin: 0 0 28px;
+  }
+
+  a {
     color: $accent;
   }
 }
 
-.post-content {
-  h2 {
-    font-size: 26px;
-    margin: 40px 0 0;
-  }
+.social {
+  margin: 16px 0 0;
 
-  p {
+  a {
+    display: inline-block;
     font-size: 16px;
-    margin: 0 0 12px;
-  }
-
-  p:last-child {
-    margin: 0 0 24px;
+    margin: 0 16px 0 0;
   }
 }
 
+.back {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 2;
+  margin: 24px 0 0;
+}
+
 .highlight {
-  border: 1px solid $light-gray;
-  margin: 0 0 12px;
-  padding: 5px 0 5px 5px;
+  margin: 0 0 24px;
+  padding: 0 0 0 52px;
 
   pre {
-    font-size: $small-font-size;
+    line-height: 20px;
     margin: 0;
     overflow: scroll;
+  }
+
+  code {
+    font-family: "Inconsolata", monospace;
+    font-size: 14px;
   }
 }
