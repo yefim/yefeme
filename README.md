@@ -26,7 +26,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here. Describe your available layouts, includes, and/or sass.
+### Configuration variables
+
+Yefeme will respect the following variables, if set in your site's `_config.yml`:
+
+``` yaml
+author: [Your name]
+title: [The title of your site]
+description: [A short description of your site's purpose]
+url: [URL of your site]
+lang: [Language of your site]
+email: [Your email]
+twitter: [Your Twitter handle]
+github: [Your GitHub handle]
+```
 
 ## Contributing
 
