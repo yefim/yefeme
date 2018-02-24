@@ -256,17 +256,11 @@ article {
 }
 
 .social {
-  align-items: center;
   display: flex;
   margin: 16px 0 0;
 
   a {
-    font-size: 16px;
     margin: 0 16px 0 0;
-
-    &.make-mail-smaller {
-      font-size: 14px;
-    }
   }
 
   @media only screen and (max-width: 1080px) {
