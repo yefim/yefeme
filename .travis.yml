@@ -9,3 +9,5 @@ deploy:
   on:
     tags: true
     repo: yefim/yefeme
+notifications:
+  email: false
