@@ -1,0 +1,8 @@
+deploy:
+  provider: rubygems
+  api_key:
+    secure: qpXH456at9HcM9L+IxTWEJQJjAPh5TSjgRFctl1gYJPNuOhIZyP/LGPMBUJN79Jdx2vwETciVW8jbUArHHzqOrOZnXyCjnMoyFffIt+kEMRRAxYdtR7CgP3J0iG3t2Kj3ByQ/4/lYVIE7fVhhlRyKtsIcDo3AuZOWFjMmSZBRxrMRh3Iq1pdf+kzwTActgFh4cuyniBB4Be+GfCtILfc8/I/ufQuimkX7lzBkd9d7ADN51/Tc3fbPbVLL0s25+yrS2sJh0tvsow4389Evj5HsO3Bs5dmJP1epNNnT2QdZtUrxH9ZqA92KPH2+DUmUjKSNPfcgtKaRgUYsaRnkTDm1UdmD+rignotb9sXGGca3zx1qN9nOXaH816Mir52QRRTo3Orj77GKpwzxXVm7Gy8T01rYS9Dv+f9paIMNAbUi7sIc1NjbOoMR22D72+0IFkeWHtdgzlpwMnbT1mzOJzbWA8bHZQg2mpqLst2v5Q3h/m9Vgjj+jfeqKeLvynP8jwErJ9nYg9RqSlJVfRDY1GS0ukBVLeC14b9ZudsGYlczElVt8y3HKylmJcWEkZV6Oovgi4k01b0tzPLjgd86Ca3b0wqbKLmL92+QFl1cvcvFlu+JQRYFR2YyL3ik4DC6i5ocYHykJjLsXsvk2L1aQ1Zv6Y5LawjNnK+Wbv7eKdDM7U=
+  gem: yefeme
+  on:
+    tags: true
+    repo: yefim/yefeme
