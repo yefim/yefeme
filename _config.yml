@@ -1,0 +1,6 @@
+# Build settings
+markdown: kramdown
+theme: yefeme
+exclude:
+  - Gemfile
+  - Gemfile.lock
