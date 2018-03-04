@@ -1,4 +1,4 @@
-# yefeme
+# Yefeme
 
 Yefeme is Yefim's custom jekyll theme. You can use it but you don't have to. It's mainly good for blogs.
 
