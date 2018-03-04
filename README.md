@@ -33,8 +33,8 @@ description: [A short description of your site's purpose]
 url: [URL of your site]
 lang: [Language of your site]
 email: [Your email]
-twitter: [Your Twitter handle]
-github: [Your GitHub handle]
+twitter_username: [Your Twitter handle]
+github_username: [Your GitHub handle]
 ```
 
 ## Contributing
