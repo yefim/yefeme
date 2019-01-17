@@ -5,7 +5,7 @@ Yefeme is Yefim's custom jekyll theme. You can use it but you don't have to. It'
 ## Demo
 
 ![Screenshot of theme in action](screenshot.png)
-[I use this theme for my personal blog.](https://yef.im)
+I use this theme for [my personal blog](https://yef.im).
 
 ## Installation
 
