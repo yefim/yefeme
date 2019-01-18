@@ -1,0 +1,18 @@
+workflow "Publish Gem" {
+  on "push"
+  resolves = ["Release Gem"]
+}
+
+action "Tag Filter" {
+  uses = "actions/bin/filter@master"
+  args = "tag v*"
+}
+
+action "Release Gem" {
+  uses = "cadwallion/publish-rubygems-action@master"
+  secrets = ["GITHUB_TOKEN", "RUBYGEMS_API_KEY"]
+  needs = ["Tag Filter"]
+  env = {
+    RELEASE_COMMAND = "gem push *.gemspec"
+  }
+}
