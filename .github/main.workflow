@@ -12,6 +12,6 @@ action "Release Gem" {
   uses = "cadwallion/publish-rubygems-action@master"
   secrets = ["GITHUB_TOKEN", "RUBYGEMS_API_KEY"]
   env = {
-    RELEASE_COMMAND = "ls"
+    RELEASE_COMMAND = "gem push yefeme.gemspec"
   }
 }
