@@ -1,5 +1,5 @@
 workflow "Publish Gem" {
-  on "push"
+  on = "push"
   resolves = ["Release Gem"]
 }
 
