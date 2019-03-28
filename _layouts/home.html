@@ -6,17 +6,25 @@ layout: default
   <div class="logo logo-closer-to-top-on-mobile">
     {% include logo.svg width=103 height=136 %}
     <div class="under under-large">
-      <h1><em>{{ site.title | escape }}</em></h1>
+      {% if site.title %}
+        <h1><em>{{ site.title | escape }}</em></h1>
+      {% endif %}
       <div class="social">
-        <a aria-label="Twitter" class="accent" href="https://twitter.com/{{ site.twitter_username }}">
-          {% include twitter.svg %}
-        </a><!--
-        --><a aria-label="GitHub" class="accent" href="https://github.com/{{ site.github_username }}">
-          {% include github.svg %}
-        </a><!--
-        --><a aria-label="Email (opens mail client)" class="accent make-mail-smaller" href="mailto:{{ site.email }}">
-          {% include email.svg %}
-        </a>
+        {% if site.twitter_username %}
+          <a aria-label="Twitter" href="https://twitter.com/{{ site.twitter_username }}">
+            {% include twitter.svg %}
+          </a>
+        {% endif %}
+        {% if site.github_username %}
+          <a aria-label="GitHub" href="https://github.com/{{ site.github_username }}">
+            {% include github.svg %}
+          </a>
+        {% endif %}
+        {% if site.email %}
+          <a aria-label="Email (opens mail client)" href="mailto:{{ site.email }}">
+            {% include email.svg %}
+          </a>
+        {% endif %}
       </div>
     </div>
   </div>
