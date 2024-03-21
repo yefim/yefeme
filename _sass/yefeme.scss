@@ -45,7 +45,7 @@ h2 {
 
 h1 {
   font-size: 24px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   line-height: 1.73;
 }
 
@@ -69,6 +69,9 @@ a {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
   margin: 0 0 0 auto;
   padding: 132px 0;
   width: 616px;
@@ -118,7 +121,6 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 0 44px;
 
   @media only screen and (max-width: 700px) {
     flex-direction: column;
