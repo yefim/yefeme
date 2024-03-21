@@ -299,6 +299,9 @@ article {
 
   code {
     font-family: "Inconsolata", monospace;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
     font-size: 14px;
   }
 }
