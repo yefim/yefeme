@@ -255,11 +255,8 @@ article {
 
 .social {
   display: flex;
+  gap: 16px;
   margin: 16px 0 0;
-
-  a {
-    margin: 0 16px 0 0;
-  }
 
   @media only screen and (max-width: 1080px) {
     margin: 10px 0 0;
