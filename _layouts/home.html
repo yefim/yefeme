@@ -7,23 +7,30 @@ layout: default
     {% include logo.svg width=103 height=136 %}
     <div class="under under-large">
       {% if site.title %}
-        <h1><em>{{ site.title | escape }}</em></h1>
+      <h1><em>{{ site.title | escape }}</em></h1>
       {% endif %}
       <div class="social">
         {% if site.twitter_username %}
-          <a aria-label="Twitter" href="https://twitter.com/{{ site.twitter_username }}">
-            {% include twitter.svg %}
-          </a>
-        {% endif %}
-        {% if site.github_username %}
-          <a aria-label="GitHub" href="https://github.com/{{ site.github_username }}">
-            {% include github.svg %}
-          </a>
-        {% endif %}
-        {% if site.email %}
-          <a aria-label="Email (opens mail client)" href="mailto:{{ site.email }}">
-            {% include email.svg %}
-          </a>
+        <a
+          aria-label="Twitter"
+          href="https://twitter.com/{{ site.twitter_username }}"
+        >
+          {% include twitter.svg %}
+        </a>
+        {% endif %} {% if site.github_username %}
+        <a
+          aria-label="GitHub"
+          href="https://github.com/{{ site.github_username }}"
+        >
+          {% include github.svg %}
+        </a>
+        {% endif %} {% if site.email %}
+        <a
+          aria-label="Email (opens mail client)"
+          href="mailto:{{ site.email }}"
+        >
+          {% include email.svg %}
+        </a>
         {% endif %}
       </div>
     </div>
@@ -31,12 +38,13 @@ layout: default
 </header>
 <main>
   {% for post in site.posts %}
-    <a class="post" href="{{ post.url | relative_url }}">
-      <span class="accent fixed-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <div class="post-details">
-        <h2>{{ post.title | escape }}</h2>
-        <p class="excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
-      </div>
-    </a>
+  <a class="post" href="{{ post.url | relative_url }}">
+    <span class="accent fixed-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    <h2 class="post-title">{{ post.title | escape }}</h2>
+    <p class="post-excerpt">
+      {{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 |
+      escape }}
+    </p>
+  </a>
   {% endfor %}
 </main>
