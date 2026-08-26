@@ -42,6 +42,35 @@ twitter_username: [Your Twitter handle]
 github_username: [Your GitHub handle]
 ```
 
+### Photography shoots
+
+The home layout can mix posts with a `shoots` collection in reverse chronological order. Configure the collection and Cloudflare Images delivery variants in your site's `_config.yml`:
+
+```yaml
+collections:
+  shoots:
+    output: true
+    permalink: /portfolio/:name
+
+cf_images_account_hash: [Your Cloudflare Images account hash]
+cf_images_variants:
+  thumb: thumb
+  xl: xl
+```
+
+Each document in `_shoots` should use the `shoot` layout and provide a title, date, and list of Cloudflare image IDs:
+
+```yaml
+---
+layout: shoot
+title: Marseille
+date: 2025-11-25
+images:
+  - image-id-one
+  - image-id-two
+---
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
