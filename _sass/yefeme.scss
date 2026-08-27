@@ -135,6 +135,102 @@ main {
   }
 }
 
+:root {
+  --shoot-thumb-height: 132px;
+}
+
+.shoot-thumbs {
+  align-items: center;
+  display: grid;
+  gap: 6px;
+  margin-top: 4px;
+  width: 100%;
+
+  &.shoot-thumbs-1 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  &.shoot-thumbs-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  &.shoot-thumbs-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  &.shoot-thumbs-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  > img.shoot-thumb {
+    background: #eee;
+    border-radius: 4px;
+    height: var(--shoot-thumb-height);
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    display: flex;
+    flex-wrap: nowrap;
+    margin: 0 -16px;
+    overflow-x: auto;
+    padding: 0 16px;
+    scrollbar-width: none;
+    width: 100vw;
+    -webkit-overflow-scrolling: touch;
+
+    > img.shoot-thumb {
+      flex: 0 0 auto;
+      object-fit: initial;
+      width: auto;
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.shoot-more-thumb {
+  border-radius: 4px;
+  height: var(--shoot-thumb-height);
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  img {
+    filter: blur(2px) brightness(0.5);
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    flex: 0 0 var(--shoot-thumb-height);
+    min-width: var(--shoot-thumb-height);
+    width: var(--shoot-thumb-height);
+  }
+}
+
+.shoot-more-overlay {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 1rem;
+  font-weight: 600;
+  inset: 0;
+  justify-content: center;
+  position: absolute;
+}
+
+@media only screen and (max-width: 700px) {
+  :root {
+    --shoot-thumb-height: 180px;
+  }
+}
+
 .excerpt {
   font-size: 14px;
   line-height: 1.73;
@@ -250,6 +346,36 @@ article {
 
   a {
     color: $accent;
+  }
+}
+
+.portfolio-day {
+  .grid {
+    column-count: 3;
+    column-gap: 12px;
+
+    @media only screen and (max-width: 900px) {
+      column-count: 2;
+    }
+
+    @media only screen and (max-width: 600px) {
+      column-count: 1;
+    }
+  }
+
+  .tile {
+    background: #f6f6f6;
+    border-radius: 8px;
+    break-inside: avoid;
+    display: block;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    width: 100%;
   }
 }
 

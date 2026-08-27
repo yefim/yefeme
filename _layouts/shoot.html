@@ -1,0 +1,34 @@
+---
+layout: default
+---
+
+<header>
+  <div class="logo">
+    {% include logo.svg width=46 height=61 %}
+    <div class="under under-small">
+      <h2 itemprop="name headline"><em>{{ page.title | escape }}</em></h2>
+      <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
+      <a class="back accent" href="{{ "/" | relative_url }}">~ back home</a>
+    </div>
+  </div>
+  <hr />
+</header>
+
+<main class="portfolio-day">
+  {% assign thumb = site.cf_images_variants.thumb %}
+  {% assign xl = site.cf_images_variants.xl %}
+
+  <div class="grid">
+    {% for id in page.images %}
+      {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: id | append: "/" %}
+      <a class="tile" href="{{ base }}{{ xl }}" target="_blank" rel="noopener">
+        <img
+          src="{{ base }}{{ thumb }}"
+          loading="lazy"
+          decoding="async"
+          alt="Photo from {{ page.title | escape }}"
+        >
+      </a>
+    {% endfor %}
+  </div>
+</main>
