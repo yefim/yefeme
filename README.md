@@ -58,7 +58,7 @@ cf_images_variants:
   xl: xl
 ```
 
-Each document in `_shoots` should use the `shoot` layout and provide a title, date, and list of Cloudflare image IDs:
+Each document in `_shoots` should use the `shoot` layout and provide a title, date, and list of Cloudflare images. Include the intrinsic dimensions of the `thumb` variant so browsers can reserve each image's aspect ratio before it loads:
 
 ```yaml
 ---
@@ -66,10 +66,16 @@ layout: shoot
 title: Marseille
 date: 2025-11-25
 images:
-  - image-id-one
-  - image-id-two
+  - id: image-id-one
+    width: 1366
+    height: 910
+  - id: image-id-two
+    width: 910
+    height: 1366
 ---
 ```
+
+Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing information.
 
 ## Contributing
 

@@ -7,11 +7,16 @@ layout: entry
   {% assign xl = site.cf_images_variants.xl %}
 
   <div class="grid">
-    {% for id in page.images %}
-      {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: id | append: "/" %}
+    {% for image in page.images %}
+      {% assign image_id = image["id"] | default: image %}
+      {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: image_id | append: "/" %}
       <a class="tile" href="{{ base }}{{ xl }}" target="_blank" rel="noopener">
         <img
           src="{{ base }}{{ thumb }}"
+          {% if image["width"] and image["height"] %}
+            width="{{ image["width"] }}"
+            height="{{ image["height"] }}"
+          {% endif %}
           loading="lazy"
           decoding="async"
           alt="Photo from {{ page.title | escape }}"
