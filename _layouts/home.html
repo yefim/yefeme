@@ -38,11 +38,11 @@ layout: default
 
 <main>
   {% for entry in entries %}
-    {% if entry.collection == "shoots" %}
-      <a class="post shoot-block" href="{{ entry.url | relative_url }}">
-        <span class="accent fixed-date">{{ entry.date | date: "%b %-d, %Y" }}</span>
-        <div class="post-details shoot-details">
-          <h2>{{ entry.title | escape }}</h2>
+    <a class="post{% if entry.collection == "shoots" %} shoot-block{% endif %}" href="{{ entry.url | relative_url }}">
+      <span class="accent fixed-date">{{ entry.date | date: "%b %-d, %Y" }}</span>
+      <div class="post-details{% if entry.collection == "shoots" %} shoot-details{% endif %}">
+        <h2>{{ entry.title | escape }}</h2>
+        {% if entry.collection == "shoots" %}
           {% assign total = entry.images | size %}
           {% if total > 3 %}
             {% assign preview_count = 4 %}
@@ -76,16 +76,10 @@ layout: default
               </div>
             {% endif %}
           </div>
-        </div>
-      </a>
-    {% else %}
-      <a class="post" href="{{ entry.url | relative_url }}">
-        <span class="accent fixed-date">{{ entry.date | date: "%b %-d, %Y" }}</span>
-        <div class="post-details">
-          <h2>{{ entry.title | escape }}</h2>
+        {% else %}
           <p class="excerpt">{{ entry.excerpt | strip_html | normalize_whitespace | truncate: 160 | escape }}</p>
-        </div>
-      </a>
-    {% endif %}
+        {% endif %}
+      </div>
+    </a>
   {% endfor %}
 </main>

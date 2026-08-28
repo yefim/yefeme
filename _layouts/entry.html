@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<header>
+  <div class="logo">
+    {% include logo.svg width=46 height=61 %}
+    <div class="under under-small">
+      <h2 itemprop="name headline"><em>{{ page.title | escape }}</em></h2>
+      <p class="date"><time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">{{ page.date | date: "%b %-d, %Y" }}</time></p>
+      <a class="back accent" href="{{ "/" | relative_url }}">~ back home</a>
+    </div>
+  </div>
+  <hr />
+</header>
+
+{{ content }}
