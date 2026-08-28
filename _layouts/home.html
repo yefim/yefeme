@@ -61,6 +61,9 @@ layout: default
                   width="{{ image["width"] }}"
                   height="{{ image["height"] }}"
                 {% endif %}
+                {% if image["blurhash"] %}
+                  data-blurhash="{{ image["blurhash"] | escape }}"
+                {% endif %}
                 loading="lazy"
                 decoding="async"
                 alt="Photo from {{ entry.title | escape }}"
@@ -77,6 +80,9 @@ layout: default
                   {% if fourth_image["width"] and fourth_image["height"] %}
                     width="{{ fourth_image["width"] }}"
                     height="{{ fourth_image["height"] }}"
+                  {% endif %}
+                  {% if fourth_image["blurhash"] %}
+                    data-blurhash="{{ fourth_image["blurhash"] | escape }}"
                   {% endif %}
                   alt=""
                   loading="lazy"

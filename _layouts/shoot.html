@@ -17,6 +17,9 @@ layout: entry
             width="{{ image["width"] }}"
             height="{{ image["height"] }}"
           {% endif %}
+          {% if image["blurhash"] %}
+            data-blurhash="{{ image["blurhash"] | escape }}"
+          {% endif %}
           loading="lazy"
           decoding="async"
           alt="Photo from {{ page.title | escape }}"

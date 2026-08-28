@@ -379,6 +379,12 @@ article {
   }
 }
 
+img[data-blurhash] {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .social {
   display: flex;
   gap: 16px;

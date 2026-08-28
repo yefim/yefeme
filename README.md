@@ -69,13 +69,15 @@ images:
   - id: image-id-one
     width: 1366
     height: 910
+    blurhash: "LSD+;-t74.NF~XRiD%t7_3WBM_oe"
   - id: image-id-two
     width: 910
     height: 1366
+    blurhash: "LaEV$vM_4ns:~qM{D%of-;M{WBof"
 ---
 ```
 
-Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing information.
+The theme decodes each BlurHash in the browser and displays it as an immediate placeholder behind the full thumbnail. Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing or placeholder information.
 
 ## Contributing
 
