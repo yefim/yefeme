@@ -24,6 +24,11 @@ body {
   font-family: "Libre Baskerville", serif;
 }
 
+html.lightbox-open,
+html.lightbox-open body {
+  overflow: hidden;
+}
+
 li,
 ol,
 ul {
@@ -367,6 +372,7 @@ article {
     background: #f6f6f6;
     border-radius: 8px;
     break-inside: avoid;
+    cursor: zoom-in;
     display: block;
     margin-bottom: 12px;
     overflow: hidden;
