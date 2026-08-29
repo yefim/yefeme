@@ -33,13 +33,24 @@
       color: #fff;
       cursor: pointer;
       display: flex;
-      font: bold 1rem/1 sans-serif;
       height: 2rem;
       justify-content: center;
       padding: 0;
       position: relative;
       width: 2rem;
       z-index: 2;
+    }
+
+    button svg {
+      display: block;
+      fill: none;
+      height: 1.125rem;
+      shape-rendering: geometricPrecision;
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2.25;
+      width: 1.125rem;
     }
 
     button:focus-visible {
@@ -165,9 +176,21 @@
 
   <div class="modal hidden" role="dialog" aria-label="Photo viewer" aria-hidden="true" tabindex="-1">
     <div class="track"></div>
-    <button class="previous" type="button" aria-label="Previous photo">&#8592;</button>
-    <button class="next" type="button" aria-label="Next photo">&#8594;</button>
-    <button class="close" type="button" aria-label="Close photo viewer">&#215;</button>
+    <button class="previous" type="button" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M15 18l-6-6 6-6"></path>
+      </svg>
+    </button>
+    <button class="next" type="button" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M9 6l6 6-6 6"></path>
+      </svg>
+    </button>
+    <button class="close" type="button" aria-label="Close photo viewer">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6L6 18"></path>
+      </svg>
+    </button>
     <p class="status" aria-live="polite"></p>
   </div>
 </template>
