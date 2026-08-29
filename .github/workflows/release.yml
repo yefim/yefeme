@@ -1,0 +1,71 @@
+name: Release gem
+
+on:
+  push:
+    tags:
+      - "v*"
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Publish to RubyGems
+    if: github.repository == 'yefim/yefeme'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+    permissions:
+      contents: write
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2.9"
+          bundler-cache: true
+
+      - name: Verify tag matches gem version
+        shell: bash
+        run: |
+          gem_version="$(ruby -e 'spec = Gem::Specification.load("yefeme.gemspec") or abort "Unable to load gemspec"; puts spec.version')"
+          expected_tag="v${gem_version}"
+
+          if [[ "${GITHUB_REF_NAME}" != "${expected_tag}" ]]; then
+            echo "Tag ${GITHUB_REF_NAME} does not match gem version ${gem_version}." >&2
+            echo "Expected tag: ${expected_tag}" >&2
+            exit 1
+          fi
+
+      - name: Build and inspect gem
+        shell: bash
+        run: |
+          bundle exec rake build
+          gem_file="pkg/yefeme-${GITHUB_REF_NAME#v}.gem"
+
+          ruby -rrubygems/package -e '
+            spec = Gem::Package.new(ARGV.fetch(0)).spec
+            required = %w[_layouts/default.html _sass/yefeme.scss assets/blurhash.js]
+            forbidden_prefixes = %w[.github/ _posts/ _shoots/]
+            missing = required - spec.files
+            forbidden = spec.files.select do |file|
+              forbidden_prefixes.any? { |prefix| file.start_with?(prefix) }
+            end
+
+            abort "Missing packaged files: #{missing.join(", ")}" unless missing.empty?
+            abort "Unexpected packaged files: #{forbidden.join(", ")}" unless forbidden.empty?
+            puts "Verified #{spec.name} #{spec.version} (#{spec.files.length} files)"
+          ' "${gem_file}"
+
+      - name: Publish gem
+        uses: rubygems/release-gem@v1
+        with:
+          await-release: "true"

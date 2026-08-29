@@ -91,6 +91,22 @@ Your theme is setup just like a normal Jekyll site! To test your theme, run `bun
 
 When your theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
 
+## Releasing
+
+Gem releases are published by GitHub Actions using RubyGems Trusted Publishing.
+
+1. Update the version in `yefeme.gemspec` and merge the change to `master`.
+2. Create and push the matching version tag, for example:
+
+   ```sh
+   git tag v0.8.5
+   git push origin v0.8.5
+   ```
+
+The release workflow verifies that the tag matches the gemspec, builds and inspects the package from a clean checkout, publishes it to RubyGems, and waits for the release to propagate.
+
+Before the first automated release, configure `yefim/yefeme` as a trusted publisher for the `yefeme` gem on RubyGems.org. Use `release.yml` as the workflow filename and `release` as the GitHub environment. The environment can require approval to retain a human release gate.
+
 ## License
 
 The theme is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
