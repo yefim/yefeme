@@ -51,11 +51,19 @@ layout: default
           {% endif %}
 
           <div class="shoot-thumbs shoot-thumbs-{{ preview_count }}">
-            {% for id in entry.images limit:3 %}
-              {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: id | append: "/" %}
+            {% for image in entry.images limit:3 %}
+              {% assign image_id = image["id"] | default: image %}
+              {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: image_id | append: "/" %}
               <img
                 class="shoot-thumb"
                 src="{{ base }}{{ site.cf_images_variants.thumb }}"
+                {% if image["width"] and image["height"] %}
+                  width="{{ image["width"] }}"
+                  height="{{ image["height"] }}"
+                {% endif %}
+                {% if image["blurhash"] %}
+                  data-blurhash="{{ image["blurhash"] | escape }}"
+                {% endif %}
                 loading="lazy"
                 decoding="async"
                 alt="Photo from {{ entry.title | escape }}"
@@ -63,11 +71,19 @@ layout: default
             {% endfor %}
 
             {% if total > 3 %}
-              {% assign fourth_id = entry.images[3] %}
+              {% assign fourth_image = entry.images[3] %}
+              {% assign fourth_id = fourth_image["id"] | default: fourth_image %}
               {% assign fourth_base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: fourth_id | append: "/" %}
               <div class="shoot-thumb shoot-more-thumb">
                 <img
                   src="{{ fourth_base }}{{ site.cf_images_variants.thumb }}"
+                  {% if fourth_image["width"] and fourth_image["height"] %}
+                    width="{{ fourth_image["width"] }}"
+                    height="{{ fourth_image["height"] }}"
+                  {% endif %}
+                  {% if fourth_image["blurhash"] %}
+                    data-blurhash="{{ fourth_image["blurhash"] | escape }}"
+                  {% endif %}
                   alt=""
                   loading="lazy"
                   decoding="async"

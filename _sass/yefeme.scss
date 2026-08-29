@@ -163,7 +163,7 @@ main {
   }
 
   > img.shoot-thumb {
-    background: #eee;
+    background-color: #eee;
     border-radius: 4px;
     height: var(--shoot-thumb-height);
     object-fit: cover;
@@ -377,6 +377,12 @@ article {
     height: auto;
     width: 100%;
   }
+}
+
+img[data-blurhash] {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .social {
