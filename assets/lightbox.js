@@ -111,7 +111,6 @@
       this.previousButton.addEventListener("click", this.previous);
       this.nextButton.addEventListener("click", this.next);
       this.closeButton.addEventListener("click", this.close);
-      this.modal.addEventListener("click", this.close);
       this.track.addEventListener("scroll", this.onScroll, { passive: true });
       document.addEventListener("keydown", this.onKeydown);
       window.addEventListener("resize", this.onResize, { passive: true });
