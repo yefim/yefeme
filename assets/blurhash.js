@@ -121,6 +121,9 @@
     }
 
     image.style.backgroundImage = "url(\"" + dataUrl + "\")";
+    image.style.backgroundPosition = "center";
+    image.style.backgroundRepeat = "no-repeat";
+    image.style.backgroundSize = "cover";
   }
 
   document.querySelectorAll("img[data-blurhash]").forEach(placeholderFor);
