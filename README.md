@@ -89,11 +89,11 @@ To set up your environment to develop this theme, run `bundle install`.
 
 Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
-When your theme is released, only the files in `_layouts`, `_includes`, and `_sass` tracked with Git will be released.
+Gem releases are built from a clean checkout and include the tracked theme layouts, includes, Sass, and browser assets selected by `yefeme.gemspec`. The release workflow verifies the package and rejects site content from `_posts` or `_shoots`.
 
 ## Releasing
 
-Gem releases are published by GitHub Actions using RubyGems Trusted Publishing.
+Gem releases are published by the [`Release gem`](.github/workflows/release.yml) GitHub Actions workflow using RubyGems Trusted Publishing. Publishing uses short-lived credentials, so the repository does not need a `RUBYGEMS_API_KEY` secret.
 
 1. Update the version in `yefeme.gemspec` and merge the change to `master`.
 2. Create and push the matching version tag, for example:
@@ -103,9 +103,9 @@ Gem releases are published by GitHub Actions using RubyGems Trusted Publishing.
    git push origin v0.8.5
    ```
 
-The release workflow verifies that the tag matches the gemspec, builds and inspects the package from a clean checkout, publishes it to RubyGems, and waits for the release to propagate.
+The release workflow verifies that the tag matches the gemspec, builds and inspects the package from a clean checkout, publishes it to RubyGems, and waits until the release is available from RubyGems indexes.
 
-Before the first automated release, configure `yefim/yefeme` as a trusted publisher for the `yefeme` gem on RubyGems.org. Use `release.yml` as the workflow filename and `release` as the GitHub environment. The environment can require approval to retain a human release gate.
+Trusted Publishing is configured for `yefim/yefeme`, the `release.yml` workflow, and the `release` GitHub environment. Configure required reviewers on that environment if releases should retain a manual approval gate.
 
 ## License
 
