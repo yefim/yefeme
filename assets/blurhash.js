@@ -98,6 +98,15 @@
 
     if (!hash || !intrinsicWidth || !intrinsicHeight) return;
 
+    function finishLoading() {
+      image.classList.remove("blurhash-loading");
+    }
+
+    image.classList.add("blurhash-loading");
+    image.addEventListener("load", finishLoading, { once: true });
+    image.addEventListener("error", finishLoading, { once: true });
+    if (image.complete) finishLoading();
+
     var width = intrinsicWidth >= intrinsicHeight ? 32 : Math.max(1, Math.round(32 * intrinsicWidth / intrinsicHeight));
     var height = intrinsicHeight >= intrinsicWidth ? 32 : Math.max(1, Math.round(32 * intrinsicHeight / intrinsicWidth));
     var cacheKey = hash + ":" + width + "x" + height;

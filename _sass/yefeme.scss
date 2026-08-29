@@ -385,6 +385,10 @@ img[data-blurhash] {
   background-size: cover;
 }
 
+img.blurhash-loading {
+  color: transparent;
+}
+
 .social {
   display: flex;
   gap: 16px;
