@@ -106,7 +106,7 @@
       opacity: var(--resolution-opacity, 1);
       position: absolute;
       top: 50%;
-      touch-action: pan-x;
+      touch-action: manipulation;
       transform: translate(-50%, calc(-50% - 1.5rem));
       transition: opacity 0.3s ease;
       user-select: none;
@@ -120,16 +120,6 @@
 
     .slide img.high-resolution.loaded {
       --resolution-opacity: 1;
-    }
-
-    .slide img.dragging {
-      opacity: calc(var(--resolution-opacity, 1) * var(--drag-opacity, 1));
-      transform: translate(-50%, calc(-50% - 1.5rem)) translateY(var(--drag-y, 0));
-      transition: none;
-    }
-
-    .slide img.dismissing {
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
     }
 
     .status {
@@ -155,10 +145,6 @@
         max-width: calc(98dvw - 6rem);
         transform: translate(-50%, -50%);
       }
-
-      .slide img.dragging {
-        transform: translate(-50%, -50%) translateY(var(--drag-y, 0));
-      }
     }
 
     @media (prefers-color-scheme: dark) {
@@ -178,7 +164,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .modal,
-      .slide img.dismissing {
+      .slide img {
         transition: none;
       }
     }

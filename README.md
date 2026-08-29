@@ -77,7 +77,7 @@ images:
 ---
 ```
 
-The theme decodes each BlurHash in the browser and displays it as an immediate placeholder behind the full thumbnail. Selecting a thumbnail opens the shoot in a full-screen lightbox with button, keyboard, and swipe navigation. Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing or placeholder information.
+The theme decodes each BlurHash in the browser and displays it as an immediate placeholder behind the full thumbnail. Selecting a thumbnail opens the shoot in a full-screen lightbox with button, keyboard, horizontal swipe, and native pinch-to-zoom navigation. Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing or placeholder information.
 
 ## Contributing
 
