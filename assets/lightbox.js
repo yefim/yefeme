@@ -3,8 +3,6 @@
 
   if (!window.customElements || window.customElements.get("shoot-lightbox")) return;
 
-  var VERTICAL_DRAG_DISTANCE = 10;
-
   function getImage(photo) {
     return photo.querySelector("img");
   }
@@ -51,21 +49,13 @@
         image.loading = "eager";
         image.decoding = "async";
         image.draggable = false;
-        this.bindImageEvents(image);
+        image.addEventListener("click", (event) => event.stopPropagation());
 
         slide.appendChild(image);
         this.track.appendChild(slide);
       });
 
       this.slides = Array.from(this.track.querySelectorAll(".slide"));
-    }
-
-    bindImageEvents(image) {
-      image.addEventListener("click", (event) => event.stopPropagation());
-      image.addEventListener("touchstart", this.startTouch, { passive: true });
-      image.addEventListener("touchmove", this.dragVertically, { passive: false });
-      image.addEventListener("touchend", this.endTouch);
-      image.addEventListener("touchcancel", this.resetGesture);
     }
 
     loadHighResolutionImage(slide, photo) {
@@ -90,7 +80,7 @@
       image.loading = "eager";
       image.decoding = "async";
       image.draggable = false;
-      this.bindImageEvents(image);
+      image.addEventListener("click", (event) => event.stopPropagation());
 
       var reveal = () => {
         if (revealed) return;
@@ -150,7 +140,6 @@
       this.modal.classList.add("hidden");
       this.modal.setAttribute("aria-hidden", "true");
       document.documentElement.classList.remove("lightbox-open");
-      this.resetGesture();
 
       if (this.previouslyFocused) this.previouslyFocused.focus({ preventScroll: true });
     };
@@ -215,89 +204,6 @@
     onResize = () => {
       if (this.modal.classList.contains("hidden")) return;
       this.updateCurrentPhoto(this.currentPhoto, "auto");
-    };
-
-    startTouch = (event) => {
-      if (event.touches.length !== 1) return;
-
-      this.touchStartX = event.touches[0].clientX;
-      this.touchStartY = event.touches[0].clientY;
-      this.gestureDirection = "undecided";
-    };
-
-    dragVertically = (event) => {
-      if (event.touches.length !== 1 || this.gestureDirection === "horizontal") return;
-
-      var deltaX = Math.abs(event.touches[0].clientX - this.touchStartX);
-      var deltaY = Math.abs(event.touches[0].clientY - this.touchStartY);
-
-      if (this.gestureDirection === "undecided") {
-        if (deltaX < VERTICAL_DRAG_DISTANCE && deltaY < VERTICAL_DRAG_DISTANCE) return;
-        this.gestureDirection = deltaX > deltaY ? "horizontal" : "vertical";
-      }
-
-      if (this.gestureDirection !== "vertical") return;
-
-      event.preventDefault();
-      this.track.style.scrollSnapType = "none";
-      this.track.style.overflowX = "hidden";
-      this.applyVerticalDrag(event.touches[0].clientY - this.touchStartY);
-    };
-
-    applyVerticalDrag(distance) {
-      var images = this.currentImages();
-      if (!images.length) return;
-
-      var maxDrag = window.innerHeight * 0.5;
-      var opacity = Math.max(0, Math.min(1, 1 - Math.abs(distance) / maxDrag));
-
-      images.forEach((image) => {
-        image.classList.add("dragging");
-        image.style.setProperty("--drag-y", distance + "px");
-        image.style.setProperty("--drag-opacity", opacity);
-      });
-    }
-
-    endTouch = (event) => {
-      if (this.gestureDirection !== "vertical") return;
-
-      var distance = event.changedTouches[0].clientY - this.touchStartY;
-      var dismissDistance = Math.min(window.innerHeight * 0.3, 150);
-
-      if (Math.abs(distance) < dismissDistance) {
-        this.resetGesture();
-        return;
-      }
-
-      var images = this.currentImages();
-      if (!images.length) return;
-
-      images.forEach((image) => {
-        image.classList.add("dismissing");
-        image.style.setProperty("--drag-y", (distance > 0 ? distance + 200 : distance - 200) + "px");
-        image.style.setProperty("--drag-opacity", "0");
-      });
-      window.setTimeout(() => this.close(), 200);
-    };
-
-    currentImages() {
-      var slide = this.slides && this.slides[this.currentPhoto];
-      return slide ? Array.from(slide.querySelectorAll("img")) : [];
-    }
-
-    resetGesture = () => {
-      this.currentImages().forEach((image) => {
-        image.classList.remove("dragging", "dismissing");
-        image.style.removeProperty("--drag-y");
-        image.style.removeProperty("--drag-opacity");
-      });
-
-      if (this.track) {
-        this.track.style.removeProperty("scroll-snap-type");
-        this.track.style.removeProperty("overflow-x");
-      }
-
-      this.gestureDirection = "undecided";
     };
   }
 
