@@ -3,18 +3,10 @@
 
   if (!window.customElements || window.customElements.get("shoot-lightbox")) return;
 
-  var LARGE_VIEWPORT_BREAKPOINT = 600;
   var VERTICAL_DRAG_DISTANCE = 10;
 
   function getImage(photo) {
     return photo.querySelector("img");
-  }
-
-  function loadLargeImage(slide, photo) {
-    if (!window.matchMedia("(min-width: " + LARGE_VIEWPORT_BREAKPOINT + "px)").matches) return;
-
-    var image = slide && slide.querySelector("img");
-    if (image && photo.href && image.src !== photo.href) image.src = photo.href;
   }
 
   class ShootLightbox extends HTMLElement {
@@ -59,17 +51,66 @@
         image.loading = "eager";
         image.decoding = "async";
         image.draggable = false;
-        image.addEventListener("click", (event) => event.stopPropagation());
-        image.addEventListener("touchstart", this.startTouch, { passive: true });
-        image.addEventListener("touchmove", this.dragVertically, { passive: false });
-        image.addEventListener("touchend", this.endTouch);
-        image.addEventListener("touchcancel", this.resetGesture);
+        this.bindImageEvents(image);
 
         slide.appendChild(image);
         this.track.appendChild(slide);
       });
 
       this.slides = Array.from(this.track.querySelectorAll(".slide"));
+    }
+
+    bindImageEvents(image) {
+      image.addEventListener("click", (event) => event.stopPropagation());
+      image.addEventListener("touchstart", this.startTouch, { passive: true });
+      image.addEventListener("touchmove", this.dragVertically, { passive: false });
+      image.addEventListener("touchend", this.endTouch);
+      image.addEventListener("touchcancel", this.resetGesture);
+    }
+
+    loadHighResolutionImage(slide, photo) {
+      if (!slide || !photo.href || slide.dataset.highResolutionRequested) return;
+
+      var preview = slide.querySelector("img");
+      if (!preview) return;
+
+      slide.dataset.highResolutionRequested = "true";
+
+      var image = preview.cloneNode(true);
+      var revealed = false;
+
+      image.classList.remove("blurhash-loaded");
+      image.classList.add("high-resolution");
+      image.removeAttribute("data-blurhash");
+      image.removeAttribute("style");
+      image.removeAttribute("srcset");
+      image.removeAttribute("sizes");
+      image.setAttribute("alt", "");
+      image.setAttribute("aria-hidden", "true");
+      image.loading = "eager";
+      image.decoding = "async";
+      image.draggable = false;
+      this.bindImageEvents(image);
+
+      var reveal = () => {
+        if (revealed) return;
+        revealed = true;
+
+        var decoded = typeof image.decode === "function" ? image.decode().catch(() => {}) : Promise.resolve();
+        decoded.then(() => {
+          window.requestAnimationFrame(() => image.classList.add("loaded"));
+        });
+      };
+
+      image.addEventListener("load", reveal, { once: true });
+      image.addEventListener("error", () => {
+        delete slide.dataset.highResolutionRequested;
+        image.remove();
+      }, { once: true });
+
+      slide.appendChild(image);
+      image.src = photo.href;
+      if (image.complete && image.naturalWidth) reveal();
     }
 
     bindEvents() {
@@ -94,7 +135,7 @@
       this.modal.classList.remove("hidden");
       this.modal.setAttribute("aria-hidden", "false");
       document.documentElement.classList.add("lightbox-open");
-      loadLargeImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
+      this.loadHighResolutionImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
       this.modal.focus({ preventScroll: true });
     }
 
@@ -141,7 +182,7 @@
         behavior: behavior || "smooth"
       });
       this.updateControls();
-      loadLargeImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
+      this.loadHighResolutionImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
     }
 
     updateControls() {
@@ -167,7 +208,7 @@
           Math.min(this.photos.length - 1, Math.round(this.track.scrollLeft / width))
         );
         this.updateControls();
-        loadLargeImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
+        this.loadHighResolutionImage(this.slides[this.currentPhoto], this.photos[this.currentPhoto]);
       }, 100);
     };
 
@@ -204,15 +245,17 @@
     };
 
     applyVerticalDrag(distance) {
-      var image = this.slides[this.currentPhoto] && this.slides[this.currentPhoto].querySelector("img");
-      if (!image) return;
+      var images = this.currentImages();
+      if (!images.length) return;
 
       var maxDrag = window.innerHeight * 0.5;
       var opacity = Math.max(0, Math.min(1, 1 - Math.abs(distance) / maxDrag));
 
-      image.classList.add("dragging");
-      image.style.setProperty("--drag-y", distance + "px");
-      image.style.setProperty("--drag-opacity", opacity);
+      images.forEach((image) => {
+        image.classList.add("dragging");
+        image.style.setProperty("--drag-y", distance + "px");
+        image.style.setProperty("--drag-opacity", opacity);
+      });
     }
 
     endTouch = (event) => {
@@ -226,23 +269,28 @@
         return;
       }
 
-      var image = this.slides[this.currentPhoto] && this.slides[this.currentPhoto].querySelector("img");
-      if (!image) return;
+      var images = this.currentImages();
+      if (!images.length) return;
 
-      image.classList.add("dismissing");
-      image.style.setProperty("--drag-y", (distance > 0 ? distance + 200 : distance - 200) + "px");
-      image.style.setProperty("--drag-opacity", "0");
+      images.forEach((image) => {
+        image.classList.add("dismissing");
+        image.style.setProperty("--drag-y", (distance > 0 ? distance + 200 : distance - 200) + "px");
+        image.style.setProperty("--drag-opacity", "0");
+      });
       window.setTimeout(() => this.close(), 200);
     };
 
-    resetGesture = () => {
-      var image = this.slides && this.slides[this.currentPhoto] && this.slides[this.currentPhoto].querySelector("img");
+    currentImages() {
+      var slide = this.slides && this.slides[this.currentPhoto];
+      return slide ? Array.from(slide.querySelectorAll("img")) : [];
+    }
 
-      if (image) {
+    resetGesture = () => {
+      this.currentImages().forEach((image) => {
         image.classList.remove("dragging", "dismissing");
         image.style.removeProperty("--drag-y");
         image.style.removeProperty("--drag-opacity");
-      }
+      });
 
       if (this.track) {
         this.track.style.removeProperty("scroll-snap-type");

@@ -103,17 +103,27 @@
       max-width: 98vw;
       max-width: 98dvw;
       object-fit: contain;
+      opacity: var(--resolution-opacity, 1);
       position: absolute;
       top: 50%;
       touch-action: pan-x;
       transform: translate(-50%, calc(-50% - 1.5rem));
+      transition: opacity 0.3s ease;
       user-select: none;
       width: auto;
       -webkit-user-drag: none;
     }
 
+    .slide img.high-resolution {
+      --resolution-opacity: 0;
+    }
+
+    .slide img.high-resolution.loaded {
+      --resolution-opacity: 1;
+    }
+
     .slide img.dragging {
-      opacity: var(--drag-opacity, 1);
+      opacity: calc(var(--resolution-opacity, 1) * var(--drag-opacity, 1));
       transform: translate(-50%, calc(-50% - 1.5rem)) translateY(var(--drag-y, 0));
       transition: none;
     }
