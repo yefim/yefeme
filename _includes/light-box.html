@@ -1,0 +1,175 @@
+<template id="shoot-lightbox-template">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .modal {
+      align-items: flex-end;
+      background: #fff;
+      display: flex;
+      gap: 1rem;
+      height: 100%;
+      inset: 0;
+      justify-content: center;
+      padding: 1rem;
+      position: fixed;
+      transition: opacity 0.25s, visibility 0.25s;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .modal.hidden {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    button {
+      align-items: center;
+      background: #999;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      font: bold 1rem/1 sans-serif;
+      height: 2rem;
+      justify-content: center;
+      padding: 0;
+      position: relative;
+      width: 2rem;
+      z-index: 2;
+    }
+
+    button:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    button[disabled] {
+      background: #eee;
+      cursor: default;
+    }
+
+    .close {
+      position: absolute;
+      right: max(1rem, env(safe-area-inset-right));
+      top: max(1rem, env(safe-area-inset-top));
+    }
+
+    .track {
+      display: flex;
+      height: 100%;
+      inset: 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: absolute;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slide {
+      align-items: center;
+      display: flex;
+      flex: 0 0 100%;
+      justify-content: center;
+      position: relative;
+      scroll-snap-align: center;
+    }
+
+    .slide img {
+      height: auto;
+      left: 50%;
+      max-height: calc(100vh - 5rem);
+      max-height: calc(100dvh - 5rem);
+      max-width: 98vw;
+      max-width: 98dvw;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      touch-action: pan-x;
+      transform: translate(-50%, calc(-50% - 1.5rem));
+      user-select: none;
+      width: auto;
+      -webkit-user-drag: none;
+    }
+
+    .slide img.dragging {
+      opacity: var(--drag-opacity, 1);
+      transform: translate(-50%, calc(-50% - 1.5rem)) translateY(var(--drag-y, 0));
+      transition: none;
+    }
+
+    .slide img.dismissing {
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .status {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    @media (orientation: landscape) {
+      .modal {
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .slide img {
+        max-height: 98vh;
+        max-height: 98dvh;
+        max-width: calc(98vw - 6rem);
+        max-width: calc(98dvw - 6rem);
+        transform: translate(-50%, -50%);
+      }
+
+      .slide img.dragging {
+        transform: translate(-50%, -50%) translateY(var(--drag-y, 0));
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .modal {
+        background: #000;
+      }
+
+      button {
+        background: #666;
+      }
+
+      button[disabled] {
+        background: #333;
+        color: #000;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal,
+      .slide img.dismissing {
+        transition: none;
+      }
+    }
+  </style>
+
+  <div class="modal hidden" role="dialog" aria-label="Photo viewer" aria-hidden="true" tabindex="-1">
+    <div class="track"></div>
+    <button class="previous" type="button" aria-label="Previous photo">&#8592;</button>
+    <button class="next" type="button" aria-label="Next photo">&#8594;</button>
+    <button class="close" type="button" aria-label="Close photo viewer">&#215;</button>
+    <p class="status" aria-live="polite"></p>
+  </div>
+</template>
+
+<shoot-lightbox></shoot-lightbox>

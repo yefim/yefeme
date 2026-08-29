@@ -10,7 +10,7 @@ layout: entry
     {% for image in page.images %}
       {% assign image_id = image["id"] | default: image %}
       {% assign base = "https://imagedelivery.net/" | append: site.cf_images_account_hash | append: "/" | append: image_id | append: "/" %}
-      <a class="tile" href="{{ base }}{{ xl }}" target="_blank" rel="noopener">
+      <a class="tile" href="{{ base }}{{ xl }}">
         <img
           src="{{ base }}{{ thumb }}"
           {% if image["width"] and image["height"] %}
@@ -28,3 +28,6 @@ layout: entry
     {% endfor %}
   </div>
 </main>
+
+{% include light-box.html %}
+<script defer src="{{ "/assets/lightbox.js" | relative_url }}"></script>
