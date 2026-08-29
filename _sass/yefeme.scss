@@ -385,7 +385,7 @@ img[data-blurhash] {
   background-size: cover;
 }
 
-img.blurhash-loading {
+img[data-blurhash]:not(.blurhash-loaded) {
   color: transparent;
 }
 

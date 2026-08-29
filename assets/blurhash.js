@@ -99,10 +99,9 @@
     if (!hash || !intrinsicWidth || !intrinsicHeight) return;
 
     function finishLoading() {
-      image.classList.remove("blurhash-loading");
+      image.classList.add("blurhash-loaded");
     }
 
-    image.classList.add("blurhash-loading");
     image.addEventListener("load", finishLoading, { once: true });
     image.addEventListener("error", finishLoading, { once: true });
     if (image.complete) finishLoading();
