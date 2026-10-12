@@ -37,8 +37,15 @@
       justify-content: center;
       padding: 0;
       position: relative;
+      transition: opacity 0.25s, visibility 0.25s;
       width: 2rem;
       z-index: 2;
+    }
+
+    .modal.zoomed button {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
     }
 
     button svg {
@@ -91,8 +98,15 @@
       display: flex;
       flex: 0 0 100%;
       justify-content: center;
+      opacity: var(--drag-opacity, 1);
       position: relative;
       scroll-snap-align: center;
+      transition: opacity 0.33s ease;
+    }
+
+    .slide.zooming,
+    .slide.zooming img {
+      touch-action: none;
     }
 
     .slide img {
@@ -106,20 +120,53 @@
       opacity: var(--resolution-opacity, 1);
       position: absolute;
       top: 50%;
-      touch-action: manipulation;
-      transform: translate(-50%, calc(-50% - 1.5rem));
-      transition: opacity 0.3s ease;
+      touch-action: pan-x;
+      transform:
+        translate(-50%, calc(-50% - 1.5rem))
+        translateY(var(--drag-y, 0px));
+      transition: opacity 0.3s ease, transform 0.33s ease;
       user-select: none;
       width: auto;
       -webkit-user-drag: none;
     }
 
+    .slide.dragging,
+    .slide.dragging img {
+      transition: none;
+    }
+
+    .slide.settling {
+      transition: opacity 0.33s ease-out;
+    }
+
+    .slide.settling img {
+      transition: opacity 0.3s ease, transform 0.33s ease-out;
+    }
+
+    .slide.zooming img {
+      transform:
+        translate(-50%, calc(-50% - 1.5rem))
+        translate(var(--pan-x, 0px), var(--pan-y, 0px))
+        scale(var(--scale, 1));
+      transition: none;
+    }
+
+    .slide.zooming.zooming-paused img {
+      transition: opacity 0.3s ease, transform 0.33s ease;
+    }
+
+    .slide.zooming.panning img {
+      transition: none;
+    }
+
     .slide img.high-resolution {
       --resolution-opacity: 0;
+      pointer-events: none;
     }
 
     .slide img.high-resolution.loaded {
       --resolution-opacity: 1;
+      pointer-events: auto;
     }
 
     .status {
@@ -143,7 +190,16 @@
         max-height: 98dvh;
         max-width: calc(98vw - 6rem);
         max-width: calc(98dvw - 6rem);
-        transform: translate(-50%, -50%);
+        transform:
+          translate(-50%, -50%)
+          translateY(var(--drag-y, 0px));
+      }
+
+      .slide.zooming img {
+        transform:
+          translate(-50%, -50%)
+          translate(var(--pan-x, 0px), var(--pan-y, 0px))
+          scale(var(--scale, 1));
       }
     }
 
@@ -164,6 +220,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .modal,
+      .slide,
       .slide img {
         transition: none;
       }

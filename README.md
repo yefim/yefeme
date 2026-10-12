@@ -80,7 +80,7 @@ images:
 
 The optional `cover` field selects the Cloudflare image ID used for the shoot's link preview (`og:image`). It defaults to the first image and uses the configured `xl` variant.
 
-The theme decodes each BlurHash in the browser and displays it as an immediate placeholder behind the full thumbnail. Selecting a thumbnail opens the shoot in a full-screen lightbox with button, keyboard, horizontal swipe, and native pinch-to-zoom navigation. Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing or placeholder information.
+The theme decodes each BlurHash in the browser and displays it as an immediate placeholder behind the full thumbnail. Selecting a thumbnail opens the shoot in a full-screen lightbox with button, keyboard, and horizontal swipe navigation. Tap the backdrop or drag vertically to close; double-tap or pinch an image to zoom, then drag to pan. Scalar image IDs remain supported for existing sites, but do not provide intrinsic sizing or placeholder information.
 
 ## Contributing
 
@@ -91,6 +91,8 @@ Bug reports and pull requests are welcome. This project is intended to be a safe
 To set up your environment to develop this theme, run `bundle install`.
 
 Check cover metadata with `bundle exec ruby test_cover.rb`.
+
+Check lightbox gesture handling with `node --test test_lightbox.js`.
 
 Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
